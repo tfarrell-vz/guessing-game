@@ -20,9 +20,6 @@ class ScoreBoard:
     def add_score(self, player, score, upper_bound):
         self.scores.append((player,score, upper_bound))
 
-    def sort_scores(self):
-        pass
-
 
 def run_game(upper_bound=5):
     game = Game(upper_bound=upper_bound)
@@ -48,6 +45,7 @@ def main():
             score = run_game(upper_bound)
             scoreboard.add_score("anon", score, upper_bound)
 
+    scoreboard.scores.sort(key=lambda tup: tup[1]/tup[2])
     if scoreboard.scores:
         for player, score, upper_bound in scoreboard.scores:
             print("{}: {} out of {}".format(player, score, upper_bound))
