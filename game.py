@@ -27,13 +27,21 @@ def run_game(upper_bound=5):
         guess = input(">> Enter a guess: ")
         game.make_guess(int(guess))
 
-    print("You won! It only took you %s attempts\n" % len(game.guesses))
+    print("\n*** You won! It only took you %s attempts *** \n" % len(game.guesses))
     return len(game.guesses)
+
+
+def menu():
+    print("--- Menu ---")
+    print("Q: Quit")
+    print("P: Play")
+    print("M: Menu")
 
 
 def main():
     scoreboard = ScoreBoard()
 
+    menu()
     while True:
         selection = input(">> Choose a menu option: ")
 
@@ -44,6 +52,9 @@ def main():
             upper_bound = int(input(">> Choose the upper bound integer for the game: "))
             score = run_game(upper_bound)
             scoreboard.add_score("anon", score, upper_bound)
+
+        elif selection in "Mm":
+            menu()
 
     scoreboard.scores.sort(key=lambda tup: tup[1]/tup[2])
     if scoreboard.scores:
