@@ -11,5 +11,14 @@ class Game:
         if num == self.answer:
             self.won = True
 
-    def game_won(self):
-        return self.won
+
+def main():
+    game = Game()
+    while not game.won:
+        guess = input(">> Enter a guess: ")
+        game.make_guess(guess)
+
+    print("You won! It only took you %s attempts" % len(game.guesses))
+
+if __name__ == '__main__':
+    main()
