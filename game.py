@@ -20,6 +20,9 @@ class ScoreBoard:
     def add_score(self, player, score, upper_bound):
         self.scores.append((player,score, upper_bound))
 
+    def sort_scores(self):
+        pass
+
 
 def run_game(upper_bound=5):
     game = Game(upper_bound=upper_bound)
