@@ -17,8 +17,8 @@ class ScoreBoard:
     def __init__(self):
         self.scores = []
 
-    def add_score(self, player, score):
-        self.scores.append((player,score))
+    def add_score(self, player, score, upper_bound):
+        self.scores.append((player,score, upper_bound))
 
 
 def run_game(upper_bound=5):
@@ -43,11 +43,11 @@ def main():
         elif selection in "Pp":
             upper_bound = int(input(">> Choose the upper bound integer for the game: "))
             score = run_game(upper_bound)
-            scoreboard.add_score("anon", score)
+            scoreboard.add_score("anon", score, upper_bound)
 
     if scoreboard.scores:
-        for player, score in scoreboard.scores:
-            print("{} : {} ".format(player, score))
+        for player, score, upper_bound in scoreboard.scores:
+            print("{}: {} out of {}".format(player, score, upper_bound))
 
 
 if __name__ == '__main__':
