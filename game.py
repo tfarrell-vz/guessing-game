@@ -13,13 +13,41 @@ class Game:
             self.won = True
 
 
-def main():
-    game = Game(upper_bound=5)
+class ScoreBoard:
+    def __init__(self):
+        self.scores = []
+
+    def add_score(self, player, score):
+        self.scores.append((player,score))
+
+
+def run_game(upper_bound=5):
+    game = Game(upper_bound=upper_bound)
     while not game.won:
         guess = input(">> Enter a guess: ")
         game.make_guess(int(guess))
 
-    print("You won! It only took you %s attempts" % len(game.guesses))
+    print("You won! It only took you %s attempts\n" % len(game.guesses))
+    return len(game.guesses)
+
+
+def main():
+    scoreboard = ScoreBoard()
+
+    while True:
+        selection = input(">> Choose a menu option: ")
+
+        if selection in "Qq":
+            break
+
+        elif selection in "Pp":
+            upper_bound = int(input(">> Choose the upper bound integer for the game: "))
+            score = run_game(upper_bound)
+            scoreboard.add_score("anon", score)
+
+    if scoreboard.scores:
+        for player, score in scoreboard.scores:
+            print("{} : {} ".format(player, score))
 
 
 if __name__ == '__main__':
