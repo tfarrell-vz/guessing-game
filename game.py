@@ -1,6 +1,14 @@
 import random
 
 
+class Player:
+    def __init__(self, name=None):
+        if name:
+            self.name = name
+        else:
+            self.name = "anon"
+
+
 class Game:
     def __init__(self, upper_bound=100):
         self.guesses = []
