@@ -51,8 +51,9 @@ def main():
     scoreboard = ScoreBoard()
     players = []
 
-    menu()
     current_player = Player(name=input(">> Set your player name: "))
+    players.append(current_player)
+    menu()
 
     while True:
         selection = input(">> Choose a menu option: ")
@@ -61,6 +62,7 @@ def main():
             break
 
         elif selection in "Pp":
+            print("Playing as: ", current_player.name)
             upper_bound = int(input(">> Choose the upper bound integer for the game: "))
             score = run_game(upper_bound)
             scoreboard.add_score(current_player.name, score, upper_bound)
@@ -69,12 +71,13 @@ def main():
             menu()
 
         elif selection in "Nn":
-            player_name = input(">> Enter a player name")
+            player_name = input(">> Enter a player name: ")
             for player in players:
                 if player.name == player_name:
                     current_player = player
                 else:
                     current_player = Player(name=player_name)
+                    players.append(current_player)
 
     scoreboard.scores.sort(key=lambda tup: tup[1]/tup[2])
     if scoreboard.scores:
