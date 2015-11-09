@@ -67,8 +67,9 @@ def main():
         if selection in "Qq":
             break
 
-        if selection in "Ss":
-            print(scoreboard.personal_best(current_player))
+        elif selection in "Ss":
+            name, score, bound = scoreboard.personal_best(current_player)
+            print("{}: Your high score was {} guesses out of a max of {}".format(name, score, bound))
 
         elif selection in "Pp":
             print("Playing as: ", current_player.name)
