@@ -26,7 +26,12 @@ class ScoreBoard:
         self.scores = []
 
     def add_score(self, player, score, upper_bound):
-        self.scores.append((player,score, upper_bound))
+        self.scores.append((player, score, upper_bound))
+
+    def personal_best(self, player):
+        player_scores = [score for score in self.scores if score[0] == player.name]
+        player_scores.sort(key=lambda tup: tup[1]/tup[2])
+        return player_scores[0]
 
 
 def run_game(upper_bound=5):
@@ -42,6 +47,7 @@ def run_game(upper_bound=5):
 def menu():
     print("--- Menu ---")
     print("Q: Quit")
+    print("S: Display your high score")
     print("P: Play")
     print("N: Set player name")
     print("M: Menu")
@@ -60,6 +66,9 @@ def main():
 
         if selection in "Qq":
             break
+
+        if selection in "Ss":
+            print(scoreboard.personal_best(current_player))
 
         elif selection in "Pp":
             print("Playing as: ", current_player.name)
