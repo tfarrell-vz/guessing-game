@@ -31,6 +31,7 @@ class ScoreBoard:
     def personal_best(self, player):
         player_scores = [score for score in self.scores if score[0] == player.name]
         player_scores.sort(key=lambda tup: tup[1]/tup[2])
+
         return player_scores[0]
 
 
@@ -68,8 +69,12 @@ def main():
             break
 
         elif selection in "Ss":
-            name, score, bound = scoreboard.personal_best(current_player)
-            print("{}: Your high score was {} guesses out of a max of {}".format(name, score, bound))
+            try:
+                name, score, bound = scoreboard.personal_best(current_player)
+                print("{}: Your high score was {} guesses out of a max of {}".format(name, score, bound))
+
+            except IndexError:
+                print("Hey! You haven't even played the game yet!")
 
         elif selection in "Pp":
             print("Playing as: ", current_player.name)
