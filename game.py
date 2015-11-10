@@ -71,7 +71,8 @@ def main():
         elif selection in "Ss":
             try:
                 name, score, bound = scoreboard.personal_best(current_player)
-                print("{}: Your high score was {} guesses out of a max of {}".format(name, score, bound))
+                print("{}: Your high score was {} "
+                      "guesses out of a max of {}".format(name, score, bound))
 
             except IndexError:
                 print("Hey! You haven't even played the game yet!")
