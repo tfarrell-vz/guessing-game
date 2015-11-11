@@ -81,8 +81,13 @@ def main():
 
         elif selection in "Pp":
             print("Playing as: ", current_player.name)
-            upper_bound = int(input(">> Choose the upper "
-                                    "bound integer for the game: "))
+            try:
+                upper_bound = int(input(">> Choose the upper "
+                                        "bound integer for the game: "))
+            except ValueError:
+                print("Hey, you need to use an integer!")
+                continue
+
             score = run_game(upper_bound)
             scoreboard.add_score(current_player.name, score, upper_bound)
 
